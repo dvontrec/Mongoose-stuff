@@ -13,3 +13,13 @@ mongoose.connection
   .on('error', err => {
     console.warn('Error', err);
   });
+
+// defines a testing hook
+// runs before each test
+beforeEach(done => {
+  // Drops all records from the users collection
+  mongoose.connection.collections.users.drop(() => {
+    // Once all users are dropped run next test
+    done();
+  });
+});
