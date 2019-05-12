@@ -41,4 +41,24 @@ describe('Updating records', () => {
     // updates the name in the db
     assertName(tre.update({ name: 'Tre' }), done);
   });
+
+  // model class updates
+  // finds all users by criteria
+  it('model class can update', done => {
+    // passes in search criteria and what to change to
+    assertName(User.update({ name: 'Dvontre' }, { name: 'Tre' }), done);
+  });
+
+  // finds the first user to match criteria and updates
+  it('model class can update one record', done => {
+    assertName(
+      User.findOneAndUpdate({ name: 'Dvontre' }, { name: 'Tre' }),
+      done
+    );
+  });
+
+  // finds by ID and updates
+  it('model class can find record with ID and update', done => {
+    assertName(User.findByIdAndUpdate(tre._id, { name: 'Tre' }), done);
+  });
 });
